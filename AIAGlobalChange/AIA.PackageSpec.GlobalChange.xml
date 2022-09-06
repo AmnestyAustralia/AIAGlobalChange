@@ -1,0 +1,14 @@
+<PackageSpec 
+    xmlns="bb_appfx_package"
+    xmlns:c="bb_appfx_commontypes"
+    ID="efde7b26-421d-4773-a2ef-e4a63e97f59d"
+    Name="AIA Package Global Changes"
+    Description="A package defining custom AIA global changes"
+    Author="Danny Smith (AIA)"
+    >
+
+  <c:DependencyList>
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.ConstituentInactive.xml" />
+  </c:DependencyList>
+
+</PackageSpec>
