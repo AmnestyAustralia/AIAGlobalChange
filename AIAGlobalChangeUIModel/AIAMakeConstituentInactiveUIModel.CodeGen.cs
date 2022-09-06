@@ -42,6 +42,8 @@ public partial class @AIAMakeConstituentInactiveUIModel : global::Blackbaud.AppF
         _updateexistinginactive = new global::Blackbaud.AppFx.UIModeling.Core.BooleanField();
         _editquery = new global::Blackbaud.AppFx.UIModeling.Core.ShowQueryFormUIAction();
 
+        this.UserInterfaceUrl = "browser/htmlforms/custom/AIA/AIAMakeConstituentInactive.html";
+
         //
         //_idsetregisterid
         //

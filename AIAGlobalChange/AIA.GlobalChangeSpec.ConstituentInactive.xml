@@ -3,7 +3,7 @@
     xmlns:c="bb_appfx_commontypes"
     ID="a036dbb9-47ad-45f9-85f9-e80cf233fe67"
     Name="Make constituent inactive (AIA)"
-    Description="Makes a constituent inactive with the provided inactive reason and description."
+    Description="Make a selection of constituents inactive with the provided reason and details."
     Author="Danny Smith (AIA)"
     DisplayName="Make constituent inactive (AIA)"
     GlobalChangeFolder="Constituent"
