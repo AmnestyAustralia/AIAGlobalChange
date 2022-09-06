@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BB06B2D7-3828-4D9D-92FF-9521F8C956EF}</ProjectGuid>
+    <ProjectGuid>{2820B209-12AF-4993-8255-EA995F4C851F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AIAGlobalChange</RootNamespace>
-    <AssemblyName>AIAGlobalChange</AssemblyName>
+    <RootNamespace>AIAGlobalChangeUIModel</RootNamespace>
+    <AssemblyName>AIAGlobalChangeUIModel</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -22,8 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>UIModel.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Catalog.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,12 +33,24 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>UIModel.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Catalog.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Blackbaud.AppFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.Constituent.UIModel, Version=4.0.182.2618, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Blackbaud\bbappfx\vroot\bin\Blackbaud.AppFx.Constituent.UIModel.dll</HintPath>
+    </Reference>
     <Reference Include="Blackbaud.AppFx.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Blackbaud.AppFx.UIModeling.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -46,19 +58,39 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Blackbaud.AppFx.XmlTypes.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIAMakeConstituentInactiveUIModel.CodeGen.cs">
+      <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAMakeConstituentInactiveUIModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Catalog.ruleset" />
+    <None Include="UIModel.ruleset" />
+    <None Include="postbuild.bat" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="AIA.GlobalChangeSpec.ConstituentInactive.xml" />
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.ConstituentInactive.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.ConstituentInactive.xml</Link>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="AIAMakeConstituentInactiveUIModel.xml">
+      <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
+    </Content>
+    <Content Include="htmlforms\custom\AIA\AIAMakeConstituentInactive.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -68,4 +100,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>"$(ProjectDir)postbuild.bat"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
