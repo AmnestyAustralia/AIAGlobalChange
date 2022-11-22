@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AIAGlobalChangeUIModel")]
-[assembly: AssemblyDescription("AIA customised global changes")]
+[assembly: AssemblyDescription("AIA customised global changes UI models")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Amnesty International Australia")]
 [assembly: AssemblyProduct("AIAGlobalChangeUIModel")]

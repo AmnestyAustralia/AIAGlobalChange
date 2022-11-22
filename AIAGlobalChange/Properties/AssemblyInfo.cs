@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AIAGlobalChange")]
-[assembly: AssemblyDescription("AIA customised global changes UI models")]
+[assembly: AssemblyDescription("AIA customised global changes")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Amnesty International Australia")]
 [assembly: AssemblyProduct("AIAGlobalChange")]
