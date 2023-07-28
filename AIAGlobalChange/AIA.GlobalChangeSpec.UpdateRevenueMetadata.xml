@@ -30,6 +30,7 @@ create procedure dbo.USR_AIA_USP_GLOBALCHANGE_UPDATEREVENUE
 as      
   set nocount off;
   
+  declare @IDSET table ([ID] [uniqueidentifier] NULL)
   declare @CURRENTDATE datetime
   set @CURRENTDATE = getdate();
   set @NUMBERADDED = 0;
@@ -40,6 +41,9 @@ as
     exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output;
           
   begin try
+    insert @IDSET select ID from dbo.[UFN_IDSETREADER_GETRESULTS_GUID](@IDSETREGISTERID)
+  
+    -- Update revenue metadata fields where applicable
     update
       rev
     set
@@ -50,13 +54,24 @@ as
       rev.CHANNELCODEID = case when @CHANNELCODEID is null then rev.CHANNELCODEID else @CHANNELCODEID end
 
     from
-      dbo.[UFN_IDSETREADER_GETRESULTS_GUID](@IDSETREGISTERID) Id
+      @IDSET Id
     inner join
       dbo.REVENUE_EXT rev on rev.ID = Id.ID
     set
       @NUMBEREDITED = @@ROWCOUNT;
 
-    --insert records into the recurring gift amendment table.
+    -- Update change agent in the main revenue table.
+    update
+      ft
+    set
+      CHANGEDBYID = @CHANGEAGENTID,
+      DATECHANGED = @CURRENTDATE
+    from
+      @IDSET Id
+    inner join
+      dbo.FINANCIALTRANSACTION ft on ft.ID = Id.ID
+
+    -- Insert records into the recurring gift amendment table.
     insert into dbo.RECURRINGGIFTAMENDMENT (FINANCIALTRANSACTIONID,AMENDMENTTYPECODE,DATE,
                                             SOURCECODE,FINDERNUMBER,APPEALID,MAILINGID,CHANNELCODEID,
                                             ADDEDBYID,CHANGEDBYID,DATEADDED,DATECHANGED)
@@ -65,7 +80,7 @@ as
       SOURCECODE, FINDERNUMBER, APPEALID, MAILINGID, CHANNELCODEID,
       @CHANGEAGENTID, @CHANGEAGENTID, @CURRENTDATE, @CURRENTDATE
     from
-      dbo.[UFN_IDSETREADER_GETRESULTS_GUID](@IDSETREGISTERID) Id
+      @IDSET Id
     inner join
       dbo.REVENUE rev on rev.ID = Id.ID
     where rev.TRANSACTIONTYPECODE = 2;
