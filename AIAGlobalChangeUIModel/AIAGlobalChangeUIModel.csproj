@@ -75,6 +75,10 @@
       <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
     </Compile>
     <Compile Include="AIAMakeConstituentInactiveUIModel.cs" />
+    <Compile Include="AIAUpdateRevenueMetadataUIModel.CodeGen.cs">
+      <DependentUpon>AIAUpdateRevenueMetadataUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAUpdateRevenueMetadataUIModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,12 +87,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml</Link>
+    </None>
+    <Content Include="htmlforms\custom\AIA\AIAUpdateRevenueMetadata.html" />
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.ConstituentInactive.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.ConstituentInactive.xml</Link>
       <SubType>Designer</SubType>
     </None>
     <Content Include="AIAMakeConstituentInactiveUIModel.xml">
       <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
+    </Content>
+    <Content Include="AIAUpdateRevenueMetadataUIModel.xml">
+      <DependentUpon>AIAUpdateRevenueMetadataUIModel.cs</DependentUpon>
     </Content>
     <Content Include="htmlforms\custom\AIA\AIAMakeConstituentInactive.html" />
   </ItemGroup>
