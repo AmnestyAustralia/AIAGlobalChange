@@ -25,7 +25,6 @@ public partial class @AIAUpdateRevenueMetadataUIModel : global::Blackbaud.AppFx.
 
     private global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid> _idsetregisterid;
     private global::Blackbaud.AppFx.UIModeling.Core.GuidField _recordtypeid;
-    private global::Blackbaud.AppFx.UIModeling.Core.LongField _findernumber;
     private global::Blackbaud.AppFx.UIModeling.Core.StringField _sourcecode;
     private global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid> _appealid;
     private global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid> _mailingid;
@@ -39,7 +38,6 @@ public partial class @AIAUpdateRevenueMetadataUIModel : global::Blackbaud.AppFx.
 
         _idsetregisterid = new global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid>();
         _recordtypeid = new global::Blackbaud.AppFx.UIModeling.Core.GuidField();
-        _findernumber = new global::Blackbaud.AppFx.UIModeling.Core.LongField();
         _sourcecode = new global::Blackbaud.AppFx.UIModeling.Core.StringField();
         _appealid = new global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid>();
         _mailingid = new global::Blackbaud.AppFx.UIModeling.Core.SearchListField<System.Guid>();
@@ -67,13 +65,6 @@ public partial class @AIAUpdateRevenueMetadataUIModel : global::Blackbaud.AppFx.
         _recordtypeid.Visible = false;
         _recordtypeid.DBReadOnly = true;
         this.Fields.Add(_recordtypeid);
-        //
-        //_findernumber
-        //
-        _findernumber.Name = "FINDERNUMBER";
-        _findernumber.Caption = "Finder number";
-        _findernumber.DoNotApplyFormat = true;
-        this.Fields.Add(_findernumber);
         //
         //_sourcecode
         //
@@ -131,15 +122,6 @@ public partial class @AIAUpdateRevenueMetadataUIModel : global::Blackbaud.AppFx.
     [System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "4.0.2616.0")]
 	public global::Blackbaud.AppFx.UIModeling.Core.GuidField @RECORDTYPEID {
 		get { return _recordtypeid; }
-	}
-
-    /// <summary>
-    /// Finder number
-    /// </summary>
-    [System.ComponentModel.Description("Finder number")]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("BBUIModelLibrary", "4.0.2616.0")]
-	public global::Blackbaud.AppFx.UIModeling.Core.LongField @FINDERNUMBER {
-		get { return _findernumber; }
 	}
 
     /// <summary>
