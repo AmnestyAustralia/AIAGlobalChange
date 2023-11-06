@@ -62,8 +62,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,6 +73,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIAAddRevenueAttributeATTRIBUTECATEGORIESUIModel.CodeGen.cs">
+      <DependentUpon>AIAAddRevenueAttributeUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAAddRevenueAttributeUIModel.CodeGen.cs">
+      <DependentUpon>AIAAddRevenueAttributeUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAAddRevenueAttributeUIModel.cs" />
+    <Compile Include="AIADeleteRevenueAttributeATTRIBUTECATEGORIESUIModel.CodeGen.cs">
+      <DependentUpon>AIADeleteRevenueAttributeUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIADeleteRevenueAttributeUIModel.CodeGen.cs">
+      <DependentUpon>AIADeleteRevenueAttributeUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIADeleteRevenueAttributeUIModel.cs" />
     <Compile Include="AIAMakeConstituentInactiveUIModel.CodeGen.cs">
       <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
     </Compile>
@@ -90,6 +106,20 @@
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml</Link>
     </None>
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.AddRevenueAttribute.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.AddRevenueAttribute.xml</Link>
+    </None>
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml</Link>
+    </None>
+    <Content Include="AIAAddRevenueAttributeUIModel.xml">
+      <DependentUpon>AIAAddRevenueAttributeUIModel.cs</DependentUpon>
+    </Content>
+    <Content Include="AIADeleteRevenueAttributeUIModel.xml">
+      <DependentUpon>AIADeleteRevenueAttributeUIModel.cs</DependentUpon>
+    </Content>
+    <Content Include="htmlforms\custom\AIA\AIAAddRevenueAttribute.html" />
+    <Content Include="htmlforms\custom\AIA\AIADeleteRevenueAttribute.html" />
     <Content Include="htmlforms\custom\AIA\AIAUpdateRevenueMetadata.html" />
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.ConstituentInactive.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.ConstituentInactive.xml</Link>

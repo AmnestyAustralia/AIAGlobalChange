@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>AIA.GlobalChangeSpec.AddRevenueAttribute.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>AIAAddRevenueAttributeUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>AIAAddRevenueAttribute.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\AIA\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

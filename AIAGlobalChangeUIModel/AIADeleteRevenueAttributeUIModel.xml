@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>AIADeleteRevenueAttributeUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>AIADeleteRevenueAttribute.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\AIA\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>

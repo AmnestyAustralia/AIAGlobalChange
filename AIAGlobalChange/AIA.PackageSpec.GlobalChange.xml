@@ -10,6 +10,8 @@
   <c:DependencyList>
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.ConstituentInactive.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.AddRevenueAttribute.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml" />
   </c:DependencyList>
 
 </PackageSpec>
