@@ -12,6 +12,7 @@
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.AddRevenueAttribute.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.SmartFieldSpec.RevenueAppeal.xml" />
   </c:DependencyList>
 
 </PackageSpec>

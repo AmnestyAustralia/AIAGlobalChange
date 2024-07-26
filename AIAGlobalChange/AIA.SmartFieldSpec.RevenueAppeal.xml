@@ -1,0 +1,98 @@
+﻿<SmartFieldSpec
+  xmlns="bb_appfx_smartfield"
+  xmlns:c="bb_appfx_commontypes" 
+  ID="17139321-48b1-407d-8eab-7866b3cf4c4e"
+  Name="Constituent revenue appeals (AIA)"
+  Description="Returns the earliest or latest appeal for revenue records meeting the provided criteria."
+  Author="Danny Smith (AIA)"
+  SPName="USR_AIA_USP_SMARTFIELD_REVENUEAPPEAL"
+  DataType="Record"
+  ValueRecordType="Appeal" 
+  RecordType="Constituent" 
+  DisplayName="Constituent revenue appeals (AIA)" 
+  SmartFieldFolder="Constituent\Revenue"
+  >
+
+  <!-- describe the SP used to calculate the smart field values -->
+  <CreateProcedureSQL>
+    <![CDATA[
+create procedure dbo.USR_AIA_USP_SMARTFIELD_REVENUEAPPEAL
+(
+  @IDSETREGISTERID uniqueidentifier,
+  @DATETYPE nvarchar(10),
+  @INCLUDEBLANKS bit,
+  @ASOF datetime 
+)
+with execute as owner
+as
+  if @ASOF is null 
+    set @ASOF = getdate()
+ 
+  declare @idsql as nvarchar(100) = ' and (ID in (select ID from [UFN_IDSETREADER_GETRESULTS_GUID](@IDSETREGISTERID)))';
+
+  if (@IDSETREGISTERID is null)
+    set @idsql = '';
+
+  declare @blanksql as nvarchar(100) = ' and APPEALID is not null';
+  
+  if (@INCLUDEBLANKS = 1)
+    set @blanksql = '';
+
+  declare @sql as nvarchar(max) = '';
+ 
+  set @sql = @sql + char(10) + '
+    with REV as (
+      select
+        CONSTITUENTID,
+        APPEALID,
+        ROW_NUMBER() OVER (PARTITION BY CONSTITUENTID ORDER BY DATE ' + @DATETYPE + ') AS rn
+      from REVENUE
+      where 1=1
+      ' + @idsql + '
+      ' + @blanksql + '
+    )
+    select
+      CONSTITUENTID AS ID,
+      APPEALID AS VALUE
+    from REV
+    where rn = 1';
+    
+  exec sp_executesql @sql, N'
+    @IDSETREGISTERID uniqueidentifier,
+    @ASOF datetime',
+    @IDSETREGISTERID,
+    @ASOF
+  ;
+
+    ]]>
+  </CreateProcedureSQL>
+
+  <!-- describe any parameters (other than the ASOF date) defined on the SP -->
+  <FormMetaData xmlns="bb_appfx_commontypes">
+    <FormFields>
+      <FormField FieldID="IDSETREGISTERID" DataType="Guid" Caption="Selection">
+        <SearchList SearchListID="98d0070e-c4a7-495b-a438-2ac12da79068" EnableQuickFind="true">
+          <FormFieldOverrides>
+            <FormFieldOverride FieldID="RECORDTYPEID" Caption="Record type" ReadOnly="true" DefaultValueText="Fields!RECORDTYPEID" />
+          </FormFieldOverrides>
+        </SearchList>
+      </FormField>
+      <FormField FieldID="RECORDTYPEID" DataType="Guid" ReadOnly="true" Hidden="true" />
+      <FormField FieldID="DATETYPE" DataType="String" Required="true" Caption="Appeal to return" DefaultValueText="">
+        <ValueList>
+          <Items>
+            <Item>
+              <Value>ASC</Value>
+              <Label>Earliest revenue date</Label>
+            </Item>
+            <Item>
+              <Value>DESC</Value>
+              <Label>Latest revenue date</Label>
+            </Item>
+          </Items>
+        </ValueList>
+      </FormField>
+      <FormField FieldID="INCLUDEBLANKS" DataType="Boolean" Caption="Include blank appeals?" DefaultValueText="true" />
+    </FormFields>
+  </FormMetaData>
+</SmartFieldSpec>
