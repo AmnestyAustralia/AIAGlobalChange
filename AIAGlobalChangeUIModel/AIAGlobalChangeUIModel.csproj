@@ -91,6 +91,10 @@
       <DependentUpon>AIAMakeConstituentInactiveUIModel.cs</DependentUpon>
     </Compile>
     <Compile Include="AIAMakeConstituentInactiveUIModel.cs" />
+    <Compile Include="AIAStartUserDefinedConstituencyUIModel.CodeGen.cs">
+      <DependentUpon>AIAStartUserDefinedConstituencyUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAStartUserDefinedConstituencyUIModel.cs" />
     <Compile Include="AIAUpdateRevenueMetadataUIModel.CodeGen.cs">
       <DependentUpon>AIAUpdateRevenueMetadataUIModel.cs</DependentUpon>
     </Compile>
@@ -103,6 +107,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml</Link>
+    </None>
+    <Content Include="AIAStartUserDefinedConstituencyUIModel.xml">
+      <DependentUpon>AIAStartUserDefinedConstituencyUIModel.cs</DependentUpon>
+    </Content>
+    <Content Include="htmlforms\custom\AIA\AIAStartUserDefinedConstituency.html" />
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml</Link>
     </None>

@@ -61,19 +61,30 @@
     <EmbeddedResource Include="AIA.GlobalChangeSpec.ConstituentInactive.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AIA.PackageSpec.GlobalChange.xml" />
+    <EmbeddedResource Include="AIA.PackageSpec.GlobalChange.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml" />
+    <EmbeddedResource Include="AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AIA.GlobalChangeSpec.AddRevenueAttribute.xml" />
+    <EmbeddedResource Include="AIA.GlobalChangeSpec.AddRevenueAttribute.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AIA.SmartFieldSpec.RevenueAppeal.xml" />
+    <EmbeddedResource Include="AIA.SmartFieldSpec.RevenueAppeal.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

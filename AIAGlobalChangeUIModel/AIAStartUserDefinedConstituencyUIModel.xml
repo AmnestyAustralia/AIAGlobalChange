@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>AIAStartUserDefinedConstituencyUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>AIAStartUserDefinedConstituency.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\AIA\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>
