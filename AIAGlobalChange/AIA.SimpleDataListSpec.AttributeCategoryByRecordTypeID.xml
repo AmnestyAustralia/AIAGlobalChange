@@ -1,0 +1,44 @@
+﻿<SimpleDataListSpec
+  xmlns="bb_appfx_simpledatalist"
+  xmlns:c="bb_appfx_commontypes"
+  ID="cb839c08-e56b-480b-a92c-d579c8d95277"
+  Name="Attribute Category List by Record Type ID"
+  Description="A simple data list of attribute categories for a specific record type using Record Type ID."
+  Author="Danny Smith (AIA)"
+  TranslationFunctionID="512f6fbe-104b-4e6b-9338-d44d7e9f3225"
+  >
+
+  <SPSimpleList SPName="USR_AIA_USP_SIMPLEDATALIST_ATTRIBUTECATEGORIESBYRECORDTYPEID">
+    <c:CreateProcedureSQL >
+      <![CDATA[
+create procedure dbo.USR_AIA_USP_SIMPLEDATALIST_ATTRIBUTECATEGORIESBYRECORDTYPEID
+(
+  @RECORDTYPEID uniqueidentifier = null,
+  @CURRENTAPPUSERID uniqueidentifier = null
+)
+as
+  set nocount on;
+
+  select
+    ATTRIBUTECATEGORY.ID as VALUE,
+    ATTRIBUTECATEGORY.NAME as LABEL
+  from
+    dbo.ATTRIBUTECATEGORY
+    inner join dbo.ATTRIBUTERECORDTYPE on ATTRIBUTERECORDTYPE.ID = ATTRIBUTECATEGORY.ATTRIBUTERECORDTYPEID
+  where
+    RECORDTYPEID = @RECORDTYPEID and
+    dbo.UFN_SECURITY_APPUSER_GRANTED_ATTRIBUTECATEGORY_IN_SYSTEMROLE(@CURRENTAPPUSERID,ATTRIBUTECATEGORY.ID) = 1 and
+    ATTRIBUTECATEGORY.FLAGGEDFORDELETE = 0
+  order by
+    ATTRIBUTECATEGORY.NAME;
+      ]]>
+    </c:CreateProcedureSQL>
+  </SPSimpleList>
+  <Parameters> 
+    <FormMetaData xmlns="bb_appfx_commontypes"> 
+      <FormFields> 
+        <FormField FieldID="RECORDTYPEID" DataType="Guid" Caption="Record type" /> 
+      </FormFields> 
+    </FormMetaData> 
+  </Parameters>
+</SimpleDataListSpec>

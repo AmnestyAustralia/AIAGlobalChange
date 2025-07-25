@@ -14,6 +14,8 @@
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.AddRevenueAttribute.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.SmartFieldSpec.RevenueAppeal.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.SimpleDataListSpec.AttributeCategoryByRecordTypeID.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.AddRandomAttribute.xml" />
   </c:DependencyList>
 
 </PackageSpec>

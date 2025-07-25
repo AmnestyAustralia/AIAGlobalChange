@@ -73,6 +73,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIAAddRandomAttributeUIModel.CodeGen.cs">
+      <DependentUpon>AIAAddRandomAttributeUIModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AIAAddRandomAttributeUIModel.cs" />
     <Compile Include="AIAAddRevenueAttributeATTRIBUTECATEGORIESUIModel.CodeGen.cs">
       <DependentUpon>AIAAddRevenueAttributeUIModel.cs</DependentUpon>
     </Compile>
@@ -110,9 +114,16 @@
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml</Link>
     </None>
+    <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.AddRandomAttribute.xml">
+      <Link>LinkedSpecs\AIA.GlobalChangeSpec.AddRandomAttribute.xml</Link>
+    </None>
+    <Content Include="AIAAddRandomAttributeUIModel.xml">
+      <DependentUpon>AIAAddRandomAttributeUIModel.cs</DependentUpon>
+    </Content>
     <Content Include="AIAStartUserDefinedConstituencyUIModel.xml">
       <DependentUpon>AIAStartUserDefinedConstituencyUIModel.cs</DependentUpon>
     </Content>
+    <Content Include="htmlforms\custom\AIA\AIAAddRandomAttribute.html" />
     <Content Include="htmlforms\custom\AIA\AIAStartUserDefinedConstituency.html" />
     <None Include="..\AIAGlobalChange\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml">
       <Link>LinkedSpecs\AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml</Link>

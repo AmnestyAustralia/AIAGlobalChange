@@ -86,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AIA.GlobalChangeSpec.AddRandomAttribute.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AIA.SimpleDataListSpec.AttributeCategoryByRecordTypeID.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,10 @@
+﻿<UIModelWizardMetadata>
+  <SpecFileName>AIA.GlobalChangeSpec.AddRandomAttribute.xml</SpecFileName>
+  <Namespace></Namespace>
+  <ClassName>AIAAddRandomAttributeUIModel</ClassName>
+  <HtmlInfo GenerateHtml="true">
+    <HtmlFile>AIAAddRandomAttribute.html</HtmlFile>
+    <HtmlFolder>htmlforms\custom\AIA\</HtmlFolder>
+  </HtmlInfo>
+  <GenerateFromDatabase>true</GenerateFromDatabase>
+</UIModelWizardMetadata>
