@@ -11,6 +11,7 @@
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIA.GlobalChangeSpec.StartUserDefinedConstituency.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.ConstituentInactive.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.UpdateRevenueMetadata.xml" />
+    <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.UpdateRevenueOrigin.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.AddRevenueAttribute.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.GlobalChangeSpec.DeleteRevenueAttribute.xml" />
     <c:Dependency CatalogAssembly="AIAGlobalChange.dll" CatalogItem="AIAGlobalChange.AIA.SmartFieldSpec.RevenueAppeal.xml" />
