@@ -1,0 +1,173 @@
+﻿<EditDataFormTemplateSpec 
+  xmlns="bb_appfx_editdataformtemplate"
+  xmlns:c="bb_appfx_commontypes" 
+  ID="7ab087cb-56d9-4cd3-94e6-1bb7aa87a72d" 
+  Name="Revenue Origin Edit Data Form (AIA)"
+  Description="A data form for editing revenue marketing metadata fields for RG origin record." 
+  Author="Danny Smith (AIA)"
+  DataFormInstanceID="3f22c9a1-38ea-4d19-97df-6ec2b797bcff" 
+  RecordType="Recurring Gift Revenue Function History"
+  c:SecurityUIFolder="Revenue\Recurring Gifts"
+  FormHeader="Edit original RG marketing information"
+  >
+
+  <SPDataForm>
+
+    <!-- define the edit load SP, which is used to load the data for the form -->
+    <LoadImplementation SPName="USR_AIA_USP_DATAFORMTEMPLATE_EDITLOAD_REVENUEORIGIN">
+      <c:CreateProcedureSQL>
+        <![CDATA[
+create procedure dbo.USR_AIA_USP_DATAFORMTEMPLATE_EDITLOAD_REVENUEORIGIN
+(
+  @ID uniqueidentifier,
+  @DATALOADED bit = 0 output,
+  @TSLONG bigint = 0 output,
+  @FINDERNUMBER bigint = null output,
+  @SOURCECODE nvarchar(50) = null output,
+  @APPEALID uniqueidentifier = null output,
+  @MAILINGID uniqueidentifier = null output,
+  @CHANNELCODEID uniqueidentifier = null output
+)
+as
+  set nocount on;
+
+  -- be sure to set these, in case the select returns no rows
+  set @DATALOADED = 0
+  set @TSLONG = 0
+
+  -- populate the output parameters, which correspond to fields on the form.  Note that
+  -- we set @DATALOADED = 1 to indicate that the load was successful.  Otherwise, the system
+  -- will display a "no data loaded" message.  Also note that we fetch the TSLONG so that concurrency
+  -- can be considered.
+  select
+    @DATALOADED = 1,
+    @TSLONG = TSLONG,
+    @FINDERNUMBER = FINDERNUMBER,
+    @SOURCECODE = SOURCECODE,
+    @APPEALID = APPEALID,
+    @MAILINGID = MAILINGID,
+    @CHANNELCODEID = CHANNELCODEID
+  from
+    dbo.RECURRINGGIFTAMENDMENT
+  where
+    FINANCIALTRANSACTIONID = @ID and
+    AMENDMENTTYPECODE = 0 -- Only update "Added" records
+
+  if @FINDERNUMBER = 0
+    set @FINDERNUMBER = null;
+
+  return 0;
+        ]]>
+      </c:CreateProcedureSQL>
+    </LoadImplementation>
+
+    <SaveImplementation SPName="USR_AIA_USP_DATAFORMTEMPLATE_EDIT_REVENUEORIGIN">
+      <c:CreateProcedureSQL>
+        <![CDATA[
+create procedure dbo.USR_AIA_USP_DATAFORMTEMPLATE_EDIT_REVENUEORIGIN 
+(
+  @ID uniqueidentifier,
+  @CHANGEAGENTID uniqueidentifier = null,
+  @FINDERNUMBER bigint,
+  @SOURCECODE nvarchar(50),
+  @APPEALID uniqueidentifier,
+  @MAILINGID uniqueidentifier,
+  @CHANNELCODEID uniqueidentifier
+)
+as
+
+  set nocount on;
+
+  if @CHANGEAGENTID is null  
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output
+        
+  declare @CURRENTDATE datetime
+  set @CURRENTDATE = getdate()
+          
+  begin try
+    if @FINDERNUMBER is null
+      set @FINDERNUMBER = 0;
+    else if @FINDERNUMBER <> 0
+    begin
+      if dbo.[UFN_MKTFINDERNUMBER_VALIDATE_MOD10](@FINDERNUMBER) = 0
+        raiserror('BBERR_FINDERNUMBER_FAILEDCHECKDIGIT', 13, 1);
+
+      if dbo.[UFN_MKTSEGMENTATIONFINDERNUMBER_GETSEGMENTATION](@FINDERNUMBER) is null
+        raiserror('BBERR_FINDERNUMBER_INVALID', 13, 1);
+    end
+
+    -- Update revenue origin metadata fields where applicable
+    update
+      RECURRINGGIFTAMENDMENT
+    set
+      FINDERNUMBER = @FINDERNUMBER,
+      SOURCECODE = @SOURCECODE,
+      APPEALID = @APPEALID,
+      MAILINGID = @MAILINGID,
+      CHANNELCODEID = @CHANNELCODEID,
+      CHANGEDBYID = @CHANGEAGENTID,
+      DATECHANGED = @CURRENTDATE
+    where
+      FINANCIALTRANSACTIONID = @ID and
+      AMENDMENTTYPECODE = 0 -- Only update "Added" records
+  end try
+           
+  begin catch
+    exec dbo.USP_RAISE_ERROR;
+    return 1;
+  end catch
+
+  return 0;
+        ]]>
+      </c:CreateProcedureSQL>
+      <ExpectedDBExceptions xmlns="bb_appfx_commontypes">
+        <CustomExceptions>
+          <Exception Field="FINDERNUMBER" SearchText="BBERR_FINDERNUMBER_FAILEDCHECKDIGIT" CustomErrorMsgResourceKey="$$finder_number_failed_check_digit">
+            <CustomErrorMsg>Finder number failed check digit.</CustomErrorMsg>
+          </Exception>
+          <Exception Field="FINDERNUMBER" SearchText="BBERR_FINDERNUMBER_INVALID" CustomErrorMsgResourceKey="$$invalid_finder_number0">
+            <CustomErrorMsg>Invalid finder number.</CustomErrorMsg>
+          </Exception>
+        </CustomExceptions>
+      </ExpectedDBExceptions>
+    </SaveImplementation>
+
+  </SPDataForm>
+
+  <FormMetaData xmlns="bb_appfx_commontypes">
+    <FormFields>
+      <FormField FieldID="FINDERNUMBER" DataType="Long" Caption="Finder number" CaptionResourceKey="$$finder_number" DoNotApplyFormat="true" />
+      <FormField FieldID="SOURCECODE" MaxLength="50" Caption="Source code" CaptionResourceKey="$$source_code">
+        <InstalledProductList>
+          <InstalledProduct ID="3117d2c8-7f46-42f2-abeb-b654f2f63046" />
+          <InstalledProduct ID="bb9873d7-f1ed-430a-8ab4-f09f47056538" />
+        </InstalledProductList>
+      </FormField>
+      <FormField FieldID="APPEALID" DataType="Guid" Caption="Appeal" CaptionResourceKey="$$appeal">
+        <SearchList SearchListID="7d004826-2a51-4938-9f14-4eda9dade2df" EnableQuickFind="true">
+          <AddDataForms>
+            <AddDataForm ID="2736a8b5-ab2e-4330-ba15-98818321c643" Caption="Add" CaptionResourceKey="$$add" />
+          </AddDataForms>
+        </SearchList>
+      </FormField>
+      <FormField FieldID="MAILINGID" DataType="Guid" Caption="Mailing" CaptionResourceKey="$$mailing">
+        <SearchList SearchListID="349397cb-e2dd-43e8-a4ca-af5647c91d99" EnableQuickFind="true">
+          <FormFieldOverrides>
+            <FormFieldOverride FieldID="STATUS" Caption="Status" ReadOnly="true" Hidden="true" DefaultValueText="1" />
+            <FormFieldOverride FieldID="INCLUDEAPPEALMAILINGS" Caption="Include appeal mailings" ReadOnly="true" Hidden="true" DefaultValueText="true" />
+            <FormFieldOverride FieldID="APPEALID" Caption="Appeal" DefaultValueText="Fields!APPEALID" />
+          </FormFieldOverrides>
+        </SearchList>
+      </FormField>
+      <FormField FieldID="CHANNELCODEID" DataType="Guid" Caption="Channel" CaptionResourceKey="$$channel">
+        <CodeTable CodeTableName="CHANNELCODE" />
+      </FormField>
+    </FormFields>
+    <UIActions>
+      <UIAction ActionID="SOURCECODELOOKUP" Description="Look up a source code to associate with this gift" DescriptionResourceKey="$$look_up_a_source_code_to_associate_with_this_gift" ImageKey="RES:findsmall">
+        <ShowSearch SearchListID="ef764bb7-fdf0-45c2-a50f-294bf460f200" />
+      </UIAction>
+    </UIActions>
+  </FormMetaData>
+
+</EditDataFormTemplateSpec>
